@@ -74,4 +74,249 @@ namespace DataStructuresI {
     }
     #endregion
 
+
+    #region MaxSubArray
+
+    /// <summary>
+    /// Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+    /// https://leetcode.com/problems/maximum-subarray/
+    /// </summary>
+    public class MaxSubArray {
+
+        List<int[]> inputs;
+
+        public MaxSubArray() {
+            inputs = new List<int[]>();
+            inputs.Add(new[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
+            inputs.Add(new[] { 1 });
+            inputs.Add(new[] { 5, 4, -1, 7, 8 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+
+            List<string> result = new List<string>();
+
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int DoWork(int[] nums) {
+            int sum = 0;
+            int bestSum = int.MinValue;
+            for (int i = 0; i < nums.Length; i++) {
+                sum += nums[i];
+                bestSum = Math.Max(bestSum, sum);
+                if (sum < 0) sum = 0;
+            }
+            return bestSum;
+        }
+    }
+    #endregion
+
+
+    #region TwoSum
+
+    /// <summary>
+    /// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+    /// https://leetcode.com/problems/two-sum/
+    /// </summary>
+    public class TwoSum {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[] Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public TwoSum() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                var arr = DoWork(input.Nums, input.Target).ToList();
+                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        public int[] DoWork(int[] nums, int target) {
+            Dictionary<int, int> numDict = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++) {
+                int complement = target - nums[i];
+                if (numDict.ContainsKey(complement) && numDict[complement] != i)
+                    return new int[] { numDict[complement], i };
+                if (!numDict.ContainsKey(nums[i])) numDict.Add(nums[i], i);
+            }
+            return null;
+        }
+    }
+
+    #endregion
+
+
+    //NEEDS REWORK
+    #region MergeSortedArray
+
+    /// <summary>
+    /// MergeSortedArray Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/merge-sorted-array/
+    /// </summary>
+
+    //You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+    //Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+    //The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
+
+    //public class MergeSortedArray {
+
+    //    List<Inputs> inputs;
+
+    //    private class Inputs {
+    //        public int[] Nums1 { get; set; }
+    //        public int m { get; set; }
+    //        public int[] Nums2 { get; set; }
+    //        public int n { get; set; }
+    //    }
+
+
+    //    public MergeSortedArray() {
+    //        inputs = new List<Inputs>();
+    //        inputs.Add(new Inputs() { Nums1 = new[] { 1, 2, 3, 0, 0, 0 }, m = 9, Nums2 = new[] { 2, 5, 6 }, n = 3 });
+    //        inputs.Add(new Inputs() { Nums1 = new[] { 1 }, m = 6, Nums2 = new int[0], n = 0 });
+    //        inputs.Add(new Inputs() { Nums1 = new[] { 0 }, m = 6, Nums2 = new[] { 1 }, n = 1 });
+    //    }
+
+    //    public void RunScenarios(IConfiguration config, ILogger logger) {
+    //        List<string> result = new List<string>();
+    //        foreach (var input in inputs) {
+    //            var arr = DoWork(input).ToList();
+    //            result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
+    //        }
+    //        logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+    //    }
+
+    //    private int[] DoWork(Inputs input) {
+    //        if (input.m == 0) {
+    //            input.Nums2.CopyTo(input.Nums1, 0);
+    //            return input.Nums1;
+    //        } else if (input.n == 0) {
+    //            return input.Nums1;
+    //        }
+    //        int currentElement = input.m + input.n - 1;
+    //        int currentNums1 = input.m - 1;
+    //        int currentNums2 = input.n - 1;
+    //        while (currentNums2 >= 0) {
+    //            if (currentNums1 >= 0 && input.Nums1[currentNums1] > input.Nums2[currentNums2]) {
+    //                input.Nums1[currentElement--] = input.Nums1[currentNums1--];
+    //            } else {
+    //                input.Nums1[currentElement--] = input.Nums2[currentNums2--];
+    //            }
+    //        }
+    //        return input.Nums1;
+    //    }
+    //}
+    #endregion
+
+
+    #region IntersectionOfTwoArraysII
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/intersection-of-two-arrays-ii
+    /// </summary>
+    public class IntersectionOfTwoArraysII {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[] Nums1 { get; set; }
+            public int[] Nums2 { get; set; }
+        }
+
+        public IntersectionOfTwoArraysII() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums1 = new[] { 1, 2, 2, 1 }, Nums2 = new[] { 2, 2 } });
+            inputs.Add(new Inputs() { Nums1 = new[] { 4, 9, 5 }, Nums2 = new[] { 9, 4, 9, 8, 4 } });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                var arr = DoWork(input).ToList();
+                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int[] DoWork(Inputs input) {
+            List<int> intList = new List<int>();
+            Dictionary<int, int> intDict = new Dictionary<int, int>();
+            foreach (int num in input.Nums1) {
+                if (!intDict.ContainsKey(num)) {
+                    intDict.Add(num, 1);
+                } else {
+                    intDict[num] += 1;
+                }
+            }
+            foreach (int num in input.Nums2) {
+                if (intDict.ContainsKey(num) && intDict[num] > 0) {
+                    intDict[num] -= 1;
+                    intList.Add(num);
+                }
+            }
+            return intList.ToArray();
+        }
+    }
+    #endregion
+
+
+    #region BestTimeToBuyAndSellStock
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/best-time-to-buy-and-sell-stock
+    /// </summary>
+    public class BestTimeToBuyAndSellStock {
+
+        List<int[]> inputs;
+
+        public BestTimeToBuyAndSellStock() {
+            inputs = new List<int[]>();
+            inputs.Add(new[] { 7, 1, 5, 3, 6, 4 });
+            inputs.Add(new[] { 7, 6, 4, 3, 1 });
+
+        }
+
+
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int DoWork(int[] prices) {
+            if (prices == null || prices.Length == 0)
+                return 0;
+            int[] res = new int[prices.Length];
+            int diff = -prices[0];
+            for (int i = 1; i < prices.Length; i++) {
+                res[i] = Math.Max(res[i - 1], prices[i] + diff);
+                diff = Math.Max(diff, -prices[i]);
+            }
+            return res[prices.Length - 1];
+        }
+
+    }
+
+    #endregion
+
 }
