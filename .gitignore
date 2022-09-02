@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 *.userprefs
+.vs/
 
 #Build Results
 [Dd]ebug/
