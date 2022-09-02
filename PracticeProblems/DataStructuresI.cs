@@ -319,4 +319,71 @@ namespace DataStructuresI {
 
     #endregion
 
+
+
+    #region ReshapeTheMatrix
+    /// <summary>
+    /// You are given an m x n matrix mat and two integers r and c representing the number of rows and the number of columns of the wanted reshaped matrix.
+    /// The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.
+    /// If the reshape operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.
+    /// https://leetcode.com/problems/reshape-the-matrix
+    /// </summary>
+    public class ReshapeTheMatrix {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[][] mat { get; set; } //the matrix to reshape
+            public int r { get; set; } //Desired number of rows in new matrix
+            public int c { get; set; } //Desired number of columns in new matrix
+        }
+
+        public ReshapeTheMatrix() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { mat = new int[][] { new int[] { 1, 2 }, new int[] { 3, 4 } }
+            , r = 1, c = 4 });
+            inputs.Add(new Inputs() { mat = new int[][] { new int[] { 1, 2 }, new int[] { 3, 4 } }
+            , r = 2, c = 4 });
+
+        }
+
+
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input.mat, input.r, input.c).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int[][] DoWork(int[][] mat, int r, int c) {
+            
+            if(mat.Length * mat[0].Length != r * c) {
+                return mat;
+            } else {
+                int[][] newArr = new int[r][];
+                for(int i = 0; i < r; i++) { 
+                    newArr[i] = new int[c];
+                }
+                int iteration = 0;
+                for(int i = 0; i < mat.Length; i++) {
+                    for(int j = 0; j < mat[0].Length; j++) {
+                        iteration++;
+                        int k = (int)Math.Floor((double)(iteration / mat[0].Length));
+                        int l = iteration % mat[0].Length;
+                        newArr[k][l] = mat[i][j];
+                    }
+                }
+                return newArr;
+            }
+
+        }
+
+    }
+
+    #endregion
+
+
+
 }
