@@ -58,7 +58,14 @@ namespace MiscNonProjectConsole{
         public void ExecuteCommand(string[] args) {
             Console.WriteLine("");
 
-            if(args.Length != 3) {
+            if (args.Length == 0){
+                //>>>>>SET VARIABLES HERE IF DEBUGGING IN VS STUDIO OR CALLING WITH 0 ARGS<<<<<
+                args = new string[3];
+                args[0] = "PracticeProblems";
+                args[1] = "ProjectEuler";
+                args[2] = "P5";
+            }
+            else if(args.Length != 3) {
                 _logger.LogError($"You must pass in three parameters, the assembly name, the namespace name and the class name");
                 throw new ArgumentException();
             }

@@ -349,10 +349,12 @@ namespace DataStructuresI {
 
 
 
+        //TODO: Fix the output so it's readable
         public void RunScenarios(IConfiguration config, ILogger logger) {
             List<string> result = new List<string>();
             foreach (var input in inputs) {
-                result.Add(DoWork(input.mat, input.r, input.c).ToString());
+                var arr = DoWork(input.mat, input.r, input.c).ToString();
+                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
             }
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
@@ -369,10 +371,10 @@ namespace DataStructuresI {
                 int iteration = 0;
                 for(int i = 0; i < mat.Length; i++) {
                     for(int j = 0; j < mat[0].Length; j++) {
-                        iteration++;
-                        int k = (int)Math.Floor((double)(iteration / mat[0].Length));
-                        int l = iteration % mat[0].Length;
+                        int k = (int)Math.Floor((double)(iteration / c));
+                        int l = iteration % c;
                         newArr[k][l] = mat[i][j];
+                        iteration++;
                     }
                 }
                 return newArr;
