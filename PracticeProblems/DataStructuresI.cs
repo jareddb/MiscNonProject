@@ -15,7 +15,7 @@ namespace DataStructuresI {
         List<Inputs> inputs;
 
         private class Inputs {
-            public int[] Nums { get; set; }
+            public int[]? Nums { get; set; }
             public int Target { get; set; }
         }
 
@@ -38,9 +38,7 @@ namespace DataStructuresI {
             return true;
         }
     }
-
     #endregion
-
 
     #region ContainsDuplicate
 
@@ -73,7 +71,6 @@ namespace DataStructuresI {
         }
     }
     #endregion
-
 
     #region MaxSubArray
 
@@ -115,7 +112,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-
     #region TwoSum
 
     /// <summary>
@@ -127,7 +123,7 @@ namespace DataStructuresI {
         List<Inputs> inputs;
 
         private class Inputs {
-            public int[] Nums { get; set; }
+            public int[]? Nums { get; set; }
             public int Target { get; set; }
         }
 
@@ -161,8 +157,6 @@ namespace DataStructuresI {
 
     #endregion
 
-
-    //NEEDS REWORK
     #region MergeSortedArray
 
     /// <summary>
@@ -224,7 +218,6 @@ namespace DataStructuresI {
     //}
     #endregion
 
-
     #region IntersectionOfTwoArraysII
 
     /// <summary>
@@ -276,7 +269,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-
     #region BestTimeToBuyAndSellStock
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. Put URL to problem in below summary line:
@@ -319,8 +311,7 @@ namespace DataStructuresI {
 
     #endregion
 
-
-
+    //TODO: In Progress
     #region ReshapeTheMatrix
     /// <summary>
     /// You are given an m x n matrix mat and two integers r and c representing the number of rows and the number of columns of the wanted reshaped matrix.
@@ -386,6 +377,878 @@ namespace DataStructuresI {
 
     #endregion
 
+    //TODO
+    #region PascalsTriangle
 
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class PascalsTriangle {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public PascalsTriangle() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ValidSudoku
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ValidSudoku {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ValidSudoku() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region SearchA2DMatrix
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class SearchA2DMatrix {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public SearchA2DMatrix() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region FirstUniqueCharacterInAString
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class FirstUniqueCharacterInAString {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public FirstUniqueCharacterInAString() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region RansomNote
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class RansomNote {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public RansomNote() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ValidAnagram
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ValidAnagram {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ValidAnagram() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region LinkedListCycle
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class LinkedListCycle {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public LinkedListCycle() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region MergeTwoSortedLists
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class MergeTwoSortedLists {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public MergeTwoSortedLists() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region RemoveLinkedListElements
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class RemoveLinkedListElements {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public RemoveLinkedListElements() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ReverseLinkedList
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ReverseLinkedList {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ReverseLinkedList() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region RemoveDuplicatesFromSortedList
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class RemoveDuplicatesFromSortedList {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public RemoveDuplicatesFromSortedList() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ValidParenthesis
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ValidParenthesis {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ValidParenthesis() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ImplementQueueUsingStacks
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ImplementQueueUsingStacks {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ImplementQueueUsingStacks() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region BinaryTreePreorderTraversal
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class BinaryTreePreorderTraversal {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public BinaryTreePreorderTraversal() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region MaximumDepthOfBinaryTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class MaximumDepthOfBinaryTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public MaximumDepthOfBinaryTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region SymmetricTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class SymmetricTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public SymmetricTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region InvertBinaryTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class InvertBinaryTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public InvertBinaryTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region PathSum
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class PathSum {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public PathSum() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region SearchInABinarySearchTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class SearchInABinarySearchTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public SearchInABinarySearchTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region InsertIntoABinarySearchTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class InsertIntoABinarySearchTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public InsertIntoABinarySearchTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region ValidateBinarySearchTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class ValidateBinarySearchTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public ValidateBinarySearchTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region TwoSumIVInputIsABST
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class TwoSumIVInputIsABST {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public TwoSumIVInputIsABST() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
+
+    //TODO
+    #region LowestCommonAncestorOfABinarySearchTree
+
+    /// <summary>
+    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
+    /// Put URL to problem in below summary line:
+    /// https://leetcode.com/problems/template_problem
+    /// </summary>
+    public class LowestCommonAncestorOfABinarySearchTree {
+
+        List<Inputs> inputs;
+
+        private class Inputs {
+            public int[]? Nums { get; set; }
+            public int Target { get; set; }
+        }
+
+        public LowestCommonAncestorOfABinarySearchTree() {
+            inputs = new List<Inputs>();
+            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
+            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private bool DoWork(Inputs input) {
+            return true;
+        }
+    }
+    #endregion
 
 }
