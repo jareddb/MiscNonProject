@@ -949,4 +949,35 @@ namespace ProjectEuler {
     }
     #endregion
 
+    #region P18
+    /// <summary>
+    /// Maximum path sum I
+    /// Find the maximum total from top to bottom of the triangle
+    /// https://projecteuler.net/problem=18
+    /// </summary>
+    public class P18 {
+
+        List<int> inputs;
+
+        public P18() {
+            inputs = new List<int>();
+            inputs.Add(15);
+            inputs.Add(1000);
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private long DoWork(int power) {
+            return 0;
+        }
+
+    }
+    #endregion
+
 }
