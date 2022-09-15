@@ -881,30 +881,51 @@ namespace DataStructuresI {
     /// </summary>
     public class BinaryTreePreorderTraversal {
 
-        List<Inputs> inputs;
+        List<TreeNode> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
         }
 
         public BinaryTreePreorderTraversal() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<TreeNode>();
+            inputs.Add( new TreeNode() { val = 1 });
+            inputs[0].right = new TreeNode(2);
+            inputs[0].right.left = new TreeNode(3);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
             List<string> result = new List<string>();
             foreach (var input in inputs) {
-                result.Add(DoWork(input).ToString());
+                var arr = DoWork(input).ToList();
+                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
             }
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private IList<int> DoWork(TreeNode input) {
+            var result = new List<int>();
+
+            if (input is null) return result;
+
+            void recurse(TreeNode node) {
+                if (node is null) return;
+                result.Add(node.val);
+                recurse(node.left);
+                recurse(node.right);
+            }
+
+            recurse(input);
+
+            return result;
         }
     }
     #endregion
