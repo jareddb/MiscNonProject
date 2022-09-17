@@ -873,9 +873,7 @@ namespace DataStructuresI {
     #region BinaryTreePreorderTraversal
 
     /// <summary>
-    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
-    /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/binary-tree-preorder-traversal
     /// </summary>
     public class BinaryTreePreorderTraversal {
 
@@ -1079,13 +1077,10 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region SearchInABinarySearchTree
 
     /// <summary>
-    /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
-    /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/search-in-a-binary-search-tree
     /// </summary>
     public class SearchInABinarySearchTree {
 
@@ -1175,16 +1170,54 @@ namespace DataStructuresI {
 
         List<Inputs> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+
+        public class Inputs {
+            public TreeNode tree { get; set; }
+            public int val { get; set; }
         }
 
         public InsertIntoABinarySearchTree() {
             inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+
+            inputs.Add(new Inputs() {
+                tree = new TreeNode(
+                    4,
+                    new TreeNode(
+                        2,
+                        new TreeNode(1),
+                        new TreeNode(3)
+                        ),
+                    new TreeNode(7)
+                ),
+                val = 5
+            });
+            inputs.Add(new Inputs() {
+                tree = new TreeNode(
+                    40,
+                    new TreeNode(
+                        20,
+                        new TreeNode(10),
+                        new TreeNode(30)
+                        ),
+                    new TreeNode(
+                        60,
+                        new TreeNode(50),
+                        new TreeNode(70)
+                        )
+                ),
+                val = 25
+            });
+
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1195,8 +1228,23 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private TreeNode DoWork(Inputs input) {
+            TreeNode root = input.tree;
+            int val = input.val;
+            bool inserted = false;
+
+            void recurse(TreeNode node) {
+                if (node is null || inserted) return;
+                if(node.val > val && node.left is null) { node.left = new TreeNode(val); inserted = true; }
+                if(node.val < val && node.right is null) { node.right = new TreeNode(val); inserted = true; }
+                if (node.val > val) recurse(node.left);
+                if (node.val < val) recurse(node.right);
+            }
+            recurse(root);
+
+            if (root is null) root = new TreeNode(val);
+
+            return root;
         }
     }
     #endregion
