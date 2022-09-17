@@ -997,14 +997,106 @@ namespace ProjectEuler {
         }
 
         private long DoWork(int[,] tree) {
-            for (int x = 0; x < tree.Length; x++) { 
-                for(int y = 0; y < tree.GetLength(1); y++) {
+            int x = 0; int y = 0;
+            
+            //Need to iterate through all items on the next to bottom row
+            //For each number on the next to bottom row, find the largest sum that connects to it below and add that to itself
+            //repeat on the row above, until row 0 is reached
+            //Return the value of row 0
 
+            for(int i = tree.GetLength(0) - 2; i >= 0; i--) {
+                for(int j = 0; j < tree.GetLength(1)-1; j++) {
+                    int y2 = 0;
+                    int y1 = tree[i+1, j];
+                    try { y2 = tree[i+1, j+1]; } catch { y1 = 0; }
+                    tree[i, j] = tree[i, j] + Math.Max(y1, y2);
                 }
             }
-            return 0;
+
+
+            return tree[0,0];
         }
 
+    }
+    #endregion
+
+    #region P19
+    /// <summary>
+    /// Counting Sundays
+    /// How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+    /// https://projecteuler.net/problem=19
+    /// </summary>
+    public class P19 {
+
+        List<int> inputs;
+
+        public P19() {
+            inputs = new List<int>();
+            inputs.Add(2000);
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int DoWork(int maxYear) {
+            int sundays = 0;
+
+            for (int year = 1901; year <= maxYear; year++) {
+                for (int month = 1; month <= 12; month++) {
+                    if ((new DateTime(year, month, 1)).DayOfWeek == DayOfWeek.Sunday) {
+                        sundays++;
+                    }
+                }
+            }
+            return sundays;
+        }
+    }
+    #endregion
+
+
+    #region P20
+    /// <summary>
+    /// Factorial Digit Sum
+    /// Find the sum of the digits in the number 100!
+    /// https://projecteuler.net/problem=20
+    /// </summary>
+    public class P20 {
+
+        List<int> inputs;
+
+        public P20() {
+            inputs = new List<int>();
+            inputs.Add(10);
+            inputs.Add(100);
+        }
+
+        public void RunScenarios(IConfiguration config, ILogger logger) {
+            List<string> result = new List<string>();
+            foreach (var input in inputs) {
+                result.Add(DoWork(input).ToString());
+            }
+            logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
+        }
+
+        private int DoWork(int factInt) {
+            BigInteger factorial = factInt;
+
+            for(int i = factInt - 1; i > 0; i--) {
+                factorial *= i;
+            }
+            string factString = factorial.ToString();
+
+            int sum = 0;
+            for (int i = 0; i < factString.Length; i++) {
+                sum += int.Parse(factString[i].ToString());
+            }
+            return sum;
+        }
     }
     #endregion
 

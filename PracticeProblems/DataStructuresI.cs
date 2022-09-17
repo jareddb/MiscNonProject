@@ -311,7 +311,6 @@ namespace DataStructuresI {
 
     #endregion
 
-    //TODO: In Progress
     #region ReshapeTheMatrix
     /// <summary>
     /// You are given an m x n matrix mat and two integers r and c representing the number of rows and the number of columns of the wanted reshaped matrix.
@@ -345,7 +344,7 @@ namespace DataStructuresI {
             List<string> result = new List<string>();
             foreach (var input in inputs) {
                 var arr = DoWork(input.mat, input.r, input.c).ToString();
-                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList()));
+                result.Add(string.Join(", ", arr.Select(x => x.ToString()).ToList())); //Not working properly, either write code to print the contents of a jagged array, or use breakpoints and locals to see output
             }
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
@@ -871,7 +870,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region BinaryTreePreorderTraversal
 
     /// <summary>
@@ -882,7 +880,6 @@ namespace DataStructuresI {
     public class BinaryTreePreorderTraversal {
 
         List<TreeNode> inputs;
-
 
         public class TreeNode {
             public int val;
@@ -897,7 +894,7 @@ namespace DataStructuresI {
 
         public BinaryTreePreorderTraversal() {
             inputs = new List<TreeNode>();
-            inputs.Add( new TreeNode() { val = 1 });
+            inputs.Add( new TreeNode(1) );
             inputs[0].right = new TreeNode(2);
             inputs[0].right.left = new TreeNode(3);
         }

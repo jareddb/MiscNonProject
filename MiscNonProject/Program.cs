@@ -63,7 +63,7 @@ namespace MiscNonProjectConsole{
                 args = new string[3];
                 args[0] = "PracticeProblems";
                 args[1] = "DataStructuresI";
-                args[2] = "BinaryTreePreorderTraversal";
+                args[2] = "ReshapeTheMatrix";
             }
             else if(args.Length != 3) {
                 _logger.LogError($"You must pass in three parameters, the assembly name, the namespace name and the class name");
