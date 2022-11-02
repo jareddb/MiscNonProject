@@ -925,7 +925,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region MaximumDepthOfBinaryTree
 
     /// <summary>
@@ -935,18 +934,30 @@ namespace DataStructuresI {
     /// </summary>
     public class MaximumDepthOfBinaryTree {
 
-        List<Inputs> inputs;
+        List<TreeNode> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
         }
 
         public MaximumDepthOfBinaryTree() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<TreeNode>();
+
+            inputs.Add(new TreeNode(3));
+            inputs[0].right = new TreeNode(20);
+            inputs[0].left = new TreeNode(9);
+            inputs[0].right.left = new TreeNode(15);
+            inputs[0].right.right = new TreeNode(7);
+
+            inputs.Add(new TreeNode(1));
+            inputs[1].right = new TreeNode(2);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -957,8 +968,9 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private int DoWork(TreeNode input) {
+            if (input is null) return 0;
+            return Math.Max(DoWork(input.left), DoWork(input.right)) + 1;
         }
     }
     #endregion
@@ -1282,7 +1294,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region ValidateBinarySearchTree
 
     /// <summary>
@@ -1292,18 +1303,31 @@ namespace DataStructuresI {
     /// </summary>
     public class ValidateBinarySearchTree {
 
-        List<Inputs> inputs;
+        List<TreeNode> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
         }
 
         public ValidateBinarySearchTree() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<TreeNode>();
+
+            inputs.Add(new TreeNode(5));
+            inputs[0].right = new TreeNode(4);
+            inputs[0].left = new TreeNode(1);
+            inputs[0].right.left = new TreeNode(3);
+            inputs[0].right.right = new TreeNode(6);
+
+            inputs.Add(new TreeNode(2));
+            inputs[1].right = new TreeNode(3);
+            inputs[1].left = new TreeNode(1);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1314,8 +1338,20 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private bool DoWork(TreeNode root) {
+            bool isValid = true;
+            long max = long.MinValue;
+
+            void recurse(TreeNode node) {
+                if (node is null) return;
+                recurse(node.left);
+                if (node.val <= max) isValid = false;
+                max = node.val;
+                recurse(node.right);
+            }
+
+            recurse(root);
+            return isValid;
         }
     }
     #endregion
