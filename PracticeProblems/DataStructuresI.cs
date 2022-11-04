@@ -376,28 +376,22 @@ namespace DataStructuresI {
 
     #endregion
 
-    //TODO
     #region PascalsTriangle
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/pascals-triangle
     /// </summary>
     public class PascalsTriangle {
 
-        List<Inputs> inputs;
+        List<int> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
-        }
 
         public PascalsTriangle() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<int>();
+            inputs.Add(5);
+            inputs.Add(1);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -408,8 +402,20 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private IList<IList<int>> DoWork(int numRows) {
+            IList<IList<int>> result = new List<IList<int>>() { new List<int>() { 1 } };
+
+            for (int i = 2; i <= numRows; i++) {
+                var row = new List<int>();
+                row.Add(1);
+                    for(int j = 1; j < i-1; j++) {
+                        row.Add(result[i-2][j-1] + result[i-2][j]);
+                    }
+                row.Add(1);
+                result.Add(row);
+            }
+
+            return result;
         }
     }
     #endregion
@@ -1394,7 +1400,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region LowestCommonAncestorOfABinarySearchTree
 
     /// <summary>
