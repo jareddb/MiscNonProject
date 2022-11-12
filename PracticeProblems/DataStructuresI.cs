@@ -1319,47 +1319,11 @@ namespace DataStructuresI {
                 this.left = left;
                 this.right = right;
             }
-<<<<<<< HEAD
         }
 
         public class Inputs {
             public TreeNode tree { get; set; }
             //public int val { get; set; }
-        }
-
-        public ValidateBinarySearchTree() {
-            inputs = new List<Inputs>();
-
-            inputs.Add(new Inputs() {
-                tree = new TreeNode(
-                    4,
-                    new TreeNode(
-                        2,
-                        new TreeNode(1),
-                        new TreeNode(3)
-                        ),
-                    new TreeNode(7)
-                ),
-                //val = 5
-            });
-            inputs.Add(new Inputs() {
-                tree = new TreeNode(
-                    40,
-                    new TreeNode(
-                        20,
-                        new TreeNode(10),
-                        new TreeNode(30)
-                        ),
-                    new TreeNode(
-                        60,
-                        new TreeNode(50),
-                        new TreeNode(70)
-                        )
-                ),
-                //val = 25
-            });
-
-=======
         }
 
         public ValidateBinarySearchTree() {
@@ -1374,7 +1338,6 @@ namespace DataStructuresI {
             inputs.Add(new TreeNode(2));
             inputs[1].right = new TreeNode(3);
             inputs[1].left = new TreeNode(1);
->>>>>>> 5dc0084d85b9064ec37542780751443ae6f1d370
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1385,21 +1348,6 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-<<<<<<< HEAD
-        private bool DoWork(Inputs input) {
-            TreeNode root = input.tree;
-            bool isValid = true;
-
-            void recurse(TreeNode node) {
-                if (node is null) return;
-                if (node.left != null && node.left.val >= node.val) isValid = false;
-                if (node.right != null && node.right.val <= node.val) isValid = false;
-                recurse(node.left);
-                recurse(node.right);
-            }
-            recurse(root);
-
-=======
         private bool DoWork(TreeNode root) {
             bool isValid = true;
             long max = long.MinValue;
@@ -1413,7 +1361,6 @@ namespace DataStructuresI {
             }
 
             recurse(root);
->>>>>>> 5dc0084d85b9064ec37542780751443ae6f1d370
             return isValid;
         }
     }
