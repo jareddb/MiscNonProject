@@ -339,7 +339,7 @@ namespace DataStructuresI {
 
 
 
-        //TODO: Fix the output so it's readable
+        //TODO: Fix the output so it"s readable
         public void RunScenarios(IConfiguration config, ILogger logger) {
             List<string> result = new List<string>();
             foreach (var input in inputs) {
@@ -420,28 +420,41 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region ValidSudoku
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/valid-sudoku
     /// </summary>
     public class ValidSudoku {
 
-        List<Inputs> inputs;
-
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
-        }
+        List<char[][]> inputs;
 
         public ValidSudoku() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<char[][]>();
+            char[] list01 = new char[9] { '5', '3', '.', '.', '7', '.', '.', '.', '.' };
+            char[] list02 = new char[9] { '6', '.', '.', '1', '9', '5', '.', '.', '.' };
+            char[] list03 = new char[9] { '.', '9', '8', '.', '.', '.', '.', '6', '.' };
+            char[] list04 = new char[9] { '8', '.', '.', '.', '6', '.', '.', '.', '3' };
+            char[] list05 = new char[9] { '4', '.', '.', '8', '.', '3', '.', '.', '1' };
+            char[] list06 = new char[9] { '7', '.', '.', '.', '2', '.', '.', '.', '6' };
+            char[] list07 = new char[9] { '.', '6', '.', '.', '.', '.', '2', '8', '.' };
+            char[] list08 = new char[9] { '.', '.', '.', '4', '1', '9', '.', '.', '5' };
+            char[] list09 = new char[9] { '.', '.', '.', '.', '8', '.', '.', '7', '9' };
+            inputs.Add(new char[][] { list01, list02, list03, list04, list05, list06, list07, list08, list09 });
+
+            char[] list11 = new char[9] { '8', '3', '.', '.', '7', '.', '.', '.', '.' };
+            char[] list12 = new char[9] { '6', '.', '.', '1', '9', '5', '.', '.', '.' };
+            char[] list13 = new char[9] { '.', '9', '8', '.', '.', '.', '.', '6', '.' };
+            char[] list14 = new char[9] { '8', '.', '.', '.', '6', '.', '.', '.', '3' };
+            char[] list15 = new char[9] { '4', '.', '.', '8', '.', '3', '.', '.', '1' };
+            char[] list16 = new char[9] { '7', '.', '.', '.', '2', '.', '.', '.', '6' };
+            char[] list17 = new char[9] { '.', '6', '.', '.', '.', '.', '2', '8', '.' };
+            char[] list18 = new char[9] { '.', '.', '.', '4', '1', '9', '.', '.', '5' };
+            char[] list19 = new char[9] { '.', '.', '.', '.', '8', '.', '.', '7', '9' };
+            inputs.Add(new char[][] { list11, list12, list13, list14, list15, list16, list17, list18, list19 });
+
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -452,9 +465,65 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private bool DoWork(char[][] input) {
+            var board = input; bool isValid = true;
+
+            bool containsDup(List<char> nums) {
+                var dupes = nums.GroupBy(x => x).Where(x => x.Count() > 1);
+                bool distinct = dupes.Count() < 1 ? false : true;
+                return distinct;
+            }
+
+
+            //for each array in the jagged array, check for non-period duplicates
+            board.ToList().ForEach(a => { if (containsDup(a.ToList().FindAll(x => x != '.'))) isValid = false; });
+
+            //for each position 0-8 for all 9 jagged arrays, check for non-period duplicates
+            List<List<char>> invList = new List<List<char>>();
+            for( int i = 0; i < 9; i++) {
+                invList.Add(new List<char>() { 
+                    board[0][i],
+                    board[1][i],
+                    board[2][i],
+                    board[3][i],
+                    board[4][i],
+                    board[5][i],
+                    board[6][i],
+                    board[7][i],
+                    board[8][i],
+                });
+            }
+            invList.ForEach(a => { if (containsDup(a.ToList().FindAll(x => x != '.'))) isValid = false; });
+
+            //find a way to split the arrays into 3x3 squares then check each for duplicates
+            List<List<char>> squaresList = new List<List<char>>();
+            for(int i = 0; i < 9; i += 3) {
+                for(int j = 0; j < 9; j += 3) {
+                    squaresList.Add(new List<char>() {
+                    board[i][j],
+                    board[i+1][j],
+                    board[i+2][j],
+                    board[i][j+1],
+                    board[i+1][j+1],
+                    board[i+2][j+1],
+                    board[i][j+2],
+                    board[i+1][j+2],
+                    board[i+2][j+2],
+                });
+                }
+            }
+            squaresList.ForEach(a => { if (containsDup(a.ToList().FindAll(x => x != '.'))) isValid = false; });
+
+
+            //If no duplicates are found in any of the three above scenarios, return true. Otherwise return false
+            return isValid;
         }
+        private bool containsDup(List<char> nums) {
+            var dupes = nums.GroupBy(x => x).Where(x => x.Count() > 1);
+            bool distinct = dupes.Count() < 1 ? false : true;
+            return distinct;
+        }
+
     }
     #endregion
 
