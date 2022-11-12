@@ -1001,7 +1001,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region InsertIntoABinarySearchTree
 
     /// <summary>
@@ -1294,16 +1293,54 @@ namespace DataStructuresI {
 
         List<Inputs> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+
+        public class Inputs {
+            public TreeNode tree { get; set; }
+            //public int val { get; set; }
         }
 
         public ValidateBinarySearchTree() {
             inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+
+            inputs.Add(new Inputs() {
+                tree = new TreeNode(
+                    4,
+                    new TreeNode(
+                        2,
+                        new TreeNode(1),
+                        new TreeNode(3)
+                        ),
+                    new TreeNode(7)
+                ),
+                //val = 5
+            });
+            inputs.Add(new Inputs() {
+                tree = new TreeNode(
+                    40,
+                    new TreeNode(
+                        20,
+                        new TreeNode(10),
+                        new TreeNode(30)
+                        ),
+                    new TreeNode(
+                        60,
+                        new TreeNode(50),
+                        new TreeNode(70)
+                        )
+                ),
+                //val = 25
+            });
+
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1315,7 +1352,19 @@ namespace DataStructuresI {
         }
 
         private bool DoWork(Inputs input) {
-            return true;
+            TreeNode root = input.tree;
+            bool isValid = true;
+
+            void recurse(TreeNode node) {
+                if (node is null) return;
+                if (node.left != null && node.left.val >= node.val) isValid = false;
+                if (node.right != null && node.right.val <= node.val) isValid = false;
+                recurse(node.left);
+                recurse(node.right);
+            }
+            recurse(root);
+
+            return isValid;
         }
     }
     #endregion
