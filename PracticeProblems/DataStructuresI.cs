@@ -376,28 +376,22 @@ namespace DataStructuresI {
 
     #endregion
 
-    //TODO
     #region PascalsTriangle
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/pascals-triangle
     /// </summary>
     public class PascalsTriangle {
 
-        List<Inputs> inputs;
+        List<int> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
-        }
 
         public PascalsTriangle() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<int>();
+            inputs.Add(5);
+            inputs.Add(1);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -408,8 +402,20 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private IList<IList<int>> DoWork(int numRows) {
+            IList<IList<int>> result = new List<IList<int>>() { new List<int>() { 1 } };
+
+            for (int i = 2; i <= numRows; i++) {
+                var row = new List<int>();
+                row.Add(1);
+                    for(int j = 1; j < i-1; j++) {
+                        row.Add(result[i-2][j-1] + result[i-2][j]);
+                    }
+                row.Add(1);
+                result.Add(row);
+            }
+
+            return result;
         }
     }
     #endregion
@@ -925,7 +931,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region MaximumDepthOfBinaryTree
 
     /// <summary>
@@ -935,18 +940,30 @@ namespace DataStructuresI {
     /// </summary>
     public class MaximumDepthOfBinaryTree {
 
-        List<Inputs> inputs;
+        List<TreeNode> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
         }
 
         public MaximumDepthOfBinaryTree() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<TreeNode>();
+
+            inputs.Add(new TreeNode(3));
+            inputs[0].right = new TreeNode(20);
+            inputs[0].left = new TreeNode(9);
+            inputs[0].right.left = new TreeNode(15);
+            inputs[0].right.right = new TreeNode(7);
+
+            inputs.Add(new TreeNode(1));
+            inputs[1].right = new TreeNode(2);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -957,8 +974,9 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private int DoWork(TreeNode input) {
+            if (input is null) return 0;
+            return Math.Max(DoWork(input.left), DoWork(input.right)) + 1;
         }
     }
     #endregion
@@ -1281,7 +1299,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region ValidateBinarySearchTree
 
     /// <summary>
@@ -1291,7 +1308,7 @@ namespace DataStructuresI {
     /// </summary>
     public class ValidateBinarySearchTree {
 
-        List<Inputs> inputs;
+        List<TreeNode> inputs;
 
         public class TreeNode {
             public int val;
@@ -1302,6 +1319,7 @@ namespace DataStructuresI {
                 this.left = left;
                 this.right = right;
             }
+<<<<<<< HEAD
         }
 
         public class Inputs {
@@ -1341,6 +1359,22 @@ namespace DataStructuresI {
                 //val = 25
             });
 
+=======
+        }
+
+        public ValidateBinarySearchTree() {
+            inputs = new List<TreeNode>();
+
+            inputs.Add(new TreeNode(5));
+            inputs[0].right = new TreeNode(4);
+            inputs[0].left = new TreeNode(1);
+            inputs[0].right.left = new TreeNode(3);
+            inputs[0].right.right = new TreeNode(6);
+
+            inputs.Add(new TreeNode(2));
+            inputs[1].right = new TreeNode(3);
+            inputs[1].left = new TreeNode(1);
+>>>>>>> 5dc0084d85b9064ec37542780751443ae6f1d370
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1351,6 +1385,7 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
+<<<<<<< HEAD
         private bool DoWork(Inputs input) {
             TreeNode root = input.tree;
             bool isValid = true;
@@ -1364,6 +1399,21 @@ namespace DataStructuresI {
             }
             recurse(root);
 
+=======
+        private bool DoWork(TreeNode root) {
+            bool isValid = true;
+            long max = long.MinValue;
+
+            void recurse(TreeNode node) {
+                if (node is null) return;
+                recurse(node.left);
+                if (node.val <= max) isValid = false;
+                max = node.val;
+                recurse(node.right);
+            }
+
+            recurse(root);
+>>>>>>> 5dc0084d85b9064ec37542780751443ae6f1d370
             return isValid;
         }
     }
@@ -1407,28 +1457,57 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region LowestCommonAncestorOfABinarySearchTree
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
     /// </summary>
     public class LowestCommonAncestorOfABinarySearchTree {
 
-        List<Inputs> inputs;
+        List<Input> inputs;
 
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+        public class Input {
+            public TreeNode node;
+            public int p;
+            public int q;
+
+            public Input (TreeNode Node, int P, int Q) {
+                node = Node;
+                p = P;
+                q = Q;
+            }
+        }
+
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
         }
 
         public LowestCommonAncestorOfABinarySearchTree() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<Input>();
+
+            inputs.Add(new Input(new TreeNode(3), 5, 1));
+            inputs[0].node.left = new TreeNode(5);
+            inputs[0].node.right = new TreeNode(1);
+            inputs[0].node.left.left = new TreeNode(6);
+            inputs[0].node.left.right = new TreeNode(2);
+            inputs[0].node.right.left = new TreeNode(0);
+            inputs[0].node.right.right = new TreeNode(8);
+            inputs[0].node.left.right.left = new TreeNode(7);
+            inputs[0].node.left.right.right = new TreeNode(4);
+
+            inputs.Add(new Input(new TreeNode(2), 1, 37));
+            inputs[1].node.left = new TreeNode(7);
+            inputs[1].node.right = new TreeNode(1);
+            inputs[1].node.right.left = new TreeNode(9);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -1439,8 +1518,20 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private int DoWork(Input input) {
+            var root = input.node; var p = input.p; var q = input.q;
+
+            TreeNode recurse(TreeNode node, int p, int q) {
+                if (node.val == p || node.val == q || node is null) return node;
+
+                TreeNode l = node.left is null ? null : recurse(node.left, p, q);
+                TreeNode r = node.right is null ? null : recurse(node.right, p, q);
+
+                return l != null && r != null ? node : l != null ? l : r;
+            }
+
+            var value = recurse(root, p, q).val;
+            return value;
         }
     }
     #endregion
