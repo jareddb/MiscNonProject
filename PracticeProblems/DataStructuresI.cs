@@ -527,28 +527,31 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region SearchA2DMatrix
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/search-a-2d-matrix
     /// </summary>
     public class SearchA2DMatrix {
 
         List<Inputs> inputs;
 
         private class Inputs {
-            public int[]? Nums { get; set; }
+            public int[][] Matrix { get; set; }
             public int Target { get; set; }
         }
 
         public SearchA2DMatrix() {
             inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            var input = new Inputs();
+            int[] list01 = new int[4] { 1, 3, 5, 7 };
+            int[] list02 = new int[4] { 10, 11, 16, 20 };
+            int[] list03 = new int[4] { 23, 30, 34, 60 };
+            input.Matrix = new int[][] { list01, list02, list03};
+            input.Target = 3;
+            inputs.Add(input);
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -560,33 +563,30 @@ namespace DataStructuresI {
         }
 
         private bool DoWork(Inputs input) {
-            return true;
+            var matrix = input.Matrix;var target = input.Target;
+
+            var index = matrix.SelectMany(x => x).ToList().BinarySearch(target);
+            return index < 0 ? false : true;
         }
     }
     #endregion
 
-    //TODO
     #region FirstUniqueCharacterInAString
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/first-unique-character-in-a-string
     /// </summary>
     public class FirstUniqueCharacterInAString {
 
-        List<Inputs> inputs;
-
-        private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
-        }
+        List<string> inputs;
 
         public FirstUniqueCharacterInAString() {
-            inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs = new List<string>();
+            inputs.Add("leetcode");
+            inputs.Add("loveleetcode");
+            inputs.Add("aabb");
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -597,8 +597,11 @@ namespace DataStructuresI {
             logger.LogInformation($"Test Results:{Environment.NewLine}{string.Join($"{Environment.NewLine}", result)}{Environment.NewLine}");
         }
 
-        private bool DoWork(Inputs input) {
-            return true;
+        private int DoWork(string s) {
+            var nodupe = s.GroupBy(x => x).Where(x => x.Count() == 1).ToList();
+            if (nodupe.Count < 1) return -1;
+            var index = s.IndexOf(Convert.ToChar(nodupe[0].Key));
+            return index;
         }
     }
     #endregion

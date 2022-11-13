@@ -63,7 +63,7 @@ namespace MiscNonProjectConsole{
                 args = new string[3];
                 args[0] = "PracticeProblems";
                 args[1] = "DataStructuresI";
-                args[2] = "ValidSudoku";
+                args[2] = "FirstUniqueCharacterInAString";
             }
             else if(args.Length != 3) {
                 _logger.LogError($"You must pass in three parameters, the assembly name, the namespace name and the class name");
