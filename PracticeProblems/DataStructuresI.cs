@@ -606,7 +606,6 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region RansomNote
 
     /// <summary>
@@ -619,15 +618,15 @@ namespace DataStructuresI {
         List<Inputs> inputs;
 
         private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+            public string ransomNote { get; set; }
+            public string magazine { get; set; }
         }
 
         public RansomNote() {
             inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs.Add(new Inputs() { ransomNote = "a", magazine = "b" });
+            inputs.Add(new Inputs() { ransomNote = "aa", magazine = "ab" });
+            inputs.Add(new Inputs() { ransomNote = "aa", magazine = "aab" });
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -639,6 +638,13 @@ namespace DataStructuresI {
         }
 
         private bool DoWork(Inputs input) {
+            string ransomNote = input.ransomNote; string magazine = input.magazine;
+            var ransomGroupings = ransomNote.GroupBy(x => x).ToList();
+            var magazineGroupings = magazine.GroupBy(x => x).ToList();
+            foreach(var ranChar in ransomGroupings) {
+                var magChar = magazineGroupings.FirstOrDefault(x => x.Key == ranChar.Key);
+                if (magChar is null || ranChar.Count() > magChar.Count()) return false;
+            }
             return true;
         }
     }
@@ -681,7 +687,7 @@ namespace DataStructuresI {
         }
     }
     #endregion
-
+    
     //TODO
     #region LinkedListCycle
 
