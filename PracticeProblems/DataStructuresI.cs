@@ -650,28 +650,25 @@ namespace DataStructuresI {
     }
     #endregion
 
-    //TODO
     #region ValidAnagram
 
     /// <summary>
     /// Template Class for a LeetCode problem. Use the below formatting to create your solution, test it against a number of inputs and output results to the console. 
     /// Put URL to problem in below summary line:
-    /// https://leetcode.com/problems/template_problem
+    /// https://leetcode.com/problems/valid-anagram
     /// </summary>
     public class ValidAnagram {
 
         List<Inputs> inputs;
 
         private class Inputs {
-            public int[]? Nums { get; set; }
-            public int Target { get; set; }
+            public string s { get; set; }
+            public string t { get; set; }
         }
 
         public ValidAnagram() {
             inputs = new List<Inputs>();
-            inputs.Add(new Inputs() { Nums = new[] { 2, 7, 11, 15 }, Target = 9 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 2, 4 }, Target = 6 });
-            inputs.Add(new Inputs() { Nums = new[] { 3, 3 }, Target = 6 });
+            inputs.Add(new Inputs() { s = "anagram", t = "nagaram" }) ;
         }
 
         public void RunScenarios(IConfiguration config, ILogger logger) {
@@ -683,6 +680,17 @@ namespace DataStructuresI {
         }
 
         private bool DoWork(Inputs input) {
+            string s = input.s; string t = input.t;
+            var sGroupings = s.GroupBy(x => x).ToList();
+            var tGroupings = t.GroupBy(x => x).ToList();
+            foreach (var sG in sGroupings) {
+                var tG = tGroupings.FirstOrDefault(x => x.Key == sG.Key);
+                if (tG is null || sG.Count() != tG.Count()) return false;
+            }
+            foreach (var tG in tGroupings) {
+                var sG = sGroupings.FirstOrDefault(x => x.Key == tG.Key);
+                if (sG is null || tG.Count() != sG.Count()) return false;
+            }
             return true;
         }
     }
